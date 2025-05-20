@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserMessageService } from '../services/user-message.service';
 import { UserMessage } from '../models/user-message.model';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MessageFormComponent } from './message-form/message-form.component';
+import { Table } from 'primeng/table';
 
 // PrimeNG imports
 import { TableModule } from 'primeng/table';
@@ -13,8 +13,8 @@ import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { TabViewModule } from 'primeng/tabview';
-import { TooltipModule } from 'primeng/tooltip';
+import { InputTextModule } from 'primeng/inputtext';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-user-messages',
@@ -29,15 +29,16 @@ import { TooltipModule } from 'primeng/tooltip';
     CardModule,
     TagModule,
     ToastModule,
-    TabViewModule,
-    TooltipModule,
-    MessageFormComponent
+    InputTextModule,
+    RippleModule
   ],
   templateUrl: './user-messages.component.html',
   styleUrls: ['./user-messages.component.scss'],
   providers: [MessageService]
 })
 export class UserMessagesComponent implements OnInit {
+  @ViewChild('dt') table!: Table;
+  
   messages: UserMessage[] = [];
   loading: boolean = true;
   
@@ -76,7 +77,14 @@ export class UserMessagesComponent implements OnInit {
   }
 
   formatDate(dateString: string): string {
-    return new Date(dateString).toLocaleString();
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   }
 
   onPageChange(event: any): void {
@@ -112,5 +120,10 @@ export class UserMessagesComponent implements OnInit {
   
   refresh(): void {
     this.loadMessages();
+  }
+
+  onGlobalFilter(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.table.filterGlobal(value, 'contains');
   }
 } 
