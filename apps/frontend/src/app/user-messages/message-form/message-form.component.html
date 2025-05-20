@@ -1,0 +1,87 @@
+<div class="message-form-container">
+  <p-toast></p-toast>
+  
+  <p-card>
+    <ng-template pTemplate="header">
+      <div class="form-header">
+        <i class="pi pi-envelope"></i>
+        <h2>Send a Message</h2>
+      </div>
+    </ng-template>
+    
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="form-field">
+          <label for="username">Username <span class="required-star">*</span></label>
+          <span class="p-input-icon-left">
+            <i class="pi pi-user"></i>
+            <input 
+              id="username" 
+              type="text" 
+              pInputText 
+              formControlName="username" 
+              placeholder="Enter your name"
+              [ngClass]="{'ng-invalid ng-dirty': messageForm.get('username')?.invalid && messageForm.get('username')?.touched}"
+            />
+          </span>
+          <small *ngIf="messageForm.get('username')?.invalid && messageForm.get('username')?.touched" class="p-error">
+            <i class="pi pi-exclamation-circle"></i> Username is required (max 100 characters)
+          </small>
+        </div>
+        
+        <div class="form-field">
+          <label for="email">Email <span class="optional-label">(optional)</span></label>
+          <span class="p-input-icon-left">
+            <i class="pi pi-at"></i>
+            <input 
+              id="email" 
+              type="email" 
+              pInputText 
+              formControlName="email" 
+              placeholder="Enter your email"
+              [ngClass]="{'ng-invalid ng-dirty': messageForm.get('email')?.invalid && messageForm.get('email')?.touched}"
+            />
+          </span>
+          <small *ngIf="messageForm.get('email')?.invalid && messageForm.get('email')?.touched" class="p-error">
+            <i class="pi pi-exclamation-circle"></i> Enter a valid email address
+          </small>
+        </div>
+        
+        <div class="form-field">
+          <label for="message">Message <span class="required-star">*</span></label>
+          <span class="p-input-icon-left message-input">
+            <i class="pi pi-comment"></i>
+            <textarea 
+              id="message" 
+              rows="5" 
+              pTextarea 
+              formControlName="message" 
+              placeholder="Enter your message"
+              [ngClass]="{'ng-invalid ng-dirty': messageForm.get('message')?.invalid && messageForm.get('message')?.touched}"
+            ></textarea>
+          </span>
+          <small *ngIf="messageForm.get('message')?.invalid && messageForm.get('message')?.touched" class="p-error">
+            <i class="pi pi-exclamation-circle"></i> Message is required
+          </small>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <p-button 
+          type="submit" 
+          label="Send Message" 
+          icon="pi pi-send"
+          [disabled]="messageForm.invalid || submitting"
+          [loading]="submitting"
+          styleClass="p-button-raised"
+        ></p-button>
+      </div>
+    </form>
+    
+    <ng-template pTemplate="footer">
+      <div class="form-footer">
+        <p><i class="pi pi-info-circle"></i> Your message will be sent to our team</p>
+      </div>
+    </ng-template>
+  </p-card>
+</div> 

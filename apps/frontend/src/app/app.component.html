@@ -1,1 +1,28 @@
-<router-outlet></router-outlet>
+<div class="app-container">
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-content">
+      <div class="logo">
+        <h1>elunic</h1>
+      </div>
+      <nav class="nav-items">
+        <ul>
+          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+          <li><a routerLink="/messages" routerLinkActive="active">Messages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page-container fade-in">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 elunic Challenge - Built with Angular and PrimeNG</p>
+    </div>
+  </footer>
+</div>

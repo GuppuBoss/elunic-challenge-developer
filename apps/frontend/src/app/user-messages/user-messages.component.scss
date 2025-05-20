@@ -1,0 +1,160 @@
+.user-messages-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  
+  .page-header {
+    margin-bottom: 1.5rem;
+    
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem;
+      color: var(--text-color);
+    }
+    
+    p {
+      color: var(--text-color-secondary);
+      margin: 0;
+    }
+  }
+  
+  .message-card {
+    margin-bottom: 2rem;
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+    }
+  }
+  
+  .messages-list {
+    margin-bottom: 1rem;
+    
+    .message-content {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 250px;
+    }
+    
+    .date-cell {
+      white-space: nowrap;
+    }
+    
+    .unread-row {
+      background-color: rgba(59, 130, 246, 0.05);
+      font-weight: 500;
+    }
+    
+    .field-display {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      
+      .field-label {
+        font-weight: 600;
+        color: var(--text-color-secondary);
+        font-size: 0.85rem;
+      }
+      
+      .field-value {
+        color: var(--text-color);
+      }
+    }
+  }
+  
+  .paginator-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .empty-message {
+    padding: 3rem 0;
+    text-align: center;
+    color: var(--text-color-secondary);
+    
+    i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      opacity: 0.6;
+    }
+    
+    p {
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+  
+  :host ::ng-deep {
+    .p-tabview-nav {
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      background-color: rgba(59, 130, 246, 0.04);
+      border-radius: 1rem;
+      padding: 0.5rem;
+    }
+    
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+      font-weight: 500;
+    }
+    
+    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+      box-shadow: 0 2px 5px rgba(59, 130, 246, 0.2);
+    }
+    
+    .p-card {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .p-datatable .p-datatable-tbody > tr > td {
+      padding: 0.75rem 1rem;
+    }
+    
+    @media screen and (max-width: 960px) {
+      .p-datatable.p-datatable-sm .p-datatable-thead {
+        display: none;
+      }
+      
+      .p-datatable.p-datatable-sm .p-datatable-tbody > tr {
+        border-bottom: 1px solid var(--surface-border);
+        margin-bottom: 1rem;
+        padding: 1rem 0;
+      }
+      
+      .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+        display: flex;
+        width: 100% !important;
+        align-items: flex-start;
+        border: 0 none;
+        padding: 0.5rem 1rem;
+      }
+      
+      .field-display {
+        width: 100%;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    
+    .message-content {
+      max-width: 100% !important;
+      white-space: normal !important;
+    }
+  }
+} 

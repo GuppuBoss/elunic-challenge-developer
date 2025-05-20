@@ -2,7 +2,7 @@ ARG NODE_VERSION
 FROM node:${NODE_VERSION} AS base
 
 RUN apt-get update \
-    && apt-get install imagemagick
+    && apt-get install -y imagemagick
 
 RUN mkdir /app \
   && chown -R node:node /app
