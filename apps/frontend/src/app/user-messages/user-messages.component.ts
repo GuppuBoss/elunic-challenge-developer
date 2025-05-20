@@ -40,7 +40,7 @@ export class UserMessagesComponent implements OnInit {
   @ViewChild('dt') table!: Table;
   
   messages: UserMessage[] = [];
-  loading: boolean = true;
+  loading = true;
   
   // Pagination settings
   first = 0;
